@@ -1,0 +1,6 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/fajarjay/public_html
+    - cd $DEPLOYPATH
+    - composer install --no-dev --optimize-autoloader --no-interaction --no-progress --ignore-platform-reqs

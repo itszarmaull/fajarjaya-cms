@@ -1,0 +1,193 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@source '../../../../app/Filament/**/*';
+@source '../../../../resources/views/filament/**/*';
+
+/* ==========================================
+   Premium Custom Styling for Admin Login Page
+   ========================================== */
+
+/* Background styling for login page container */
+.fi-simple-layout {
+    background-image: radial-gradient(at 0% 0%, rgba(26, 86, 219, 0.15) 0px, transparent 50%), 
+                      radial-gradient(at 100% 100%, rgba(15, 23, 42, 0.95) 0px, transparent 50%);
+    background-color: #0b0f19 !important; /* Deep dark space-grade blue */
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Background glows */
+.fi-simple-layout::before {
+    content: "";
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 350px;
+    height: 350px;
+    background: rgba(26, 86, 219, 0.15);
+    border-radius: 50%;
+    filter: blur(100px);
+    pointer-events: none;
+}
+
+.fi-simple-layout::after {
+    content: "";
+    position: absolute;
+    bottom: 15%;
+    right: 20%;
+    width: 350px;
+    height: 350px;
+    background: rgba(26, 86, 219, 0.08);
+    border-radius: 50%;
+    filter: blur(120px);
+    pointer-events: none;
+}
+
+/* Glassmorphism login card style */
+.fi-simple-page {
+    background: rgba(15, 23, 42, 0.5) !important;
+    backdrop-filter: blur(24px) !important;
+    -webkit-backdrop-filter: blur(24px) !important;
+    border: 1px solid rgba(255, 255, 255, 0.06) !important;
+    border-radius: 28px !important;
+    box-shadow: 0 30px 60px -15px rgba(0, 0, 0, 0.6), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.1) !important;
+    padding: 3rem 2.5rem !important;
+    width: 90% !important;
+    max-width: 450px !important;
+    margin: auto !important;
+    position: relative;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.fi-simple-page:hover {
+    border-color: rgba(26, 86, 219, 0.3) !important;
+    transform: translateY(-2px);
+}
+
+/* Top decorative brand color strip */
+.fi-simple-page::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 5px;
+    background: linear-gradient(90deg, #1A56DB, #60a5fa, #1D4ED8);
+    border-top-left-radius: 28px;
+    border-top-right-radius: 28px;
+}
+
+/* Branding footer tag on the login card */
+.fi-simple-page::after {
+    content: "Official CMS Portal • fajarjaya.my.id";
+    display: block;
+    text-align: center;
+    font-size: 0.7rem;
+    font-weight: 700;
+    color: rgba(255, 255, 255, 0.2);
+    margin-top: 2rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    transition: color 0.3s ease;
+}
+
+.fi-simple-page:hover::after {
+    color: rgba(26, 86, 219, 0.8);
+}
+
+/* Login Logo text adjustment */
+.fi-simple-layout .fi-logo {
+    font-size: 1.5rem !important;
+    font-weight: 800 !important;
+    color: #ffffff !important;
+    letter-spacing: -0.025em !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.fi-simple-layout .fi-logo::after {
+    content: " .my.id";
+    color: #1A56DB;
+    font-weight: 900;
+}
+
+/* Heading styles */
+.fi-simple-header-heading {
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    font-size: 1.75rem !important;
+    letter-spacing: -0.025em !important;
+    margin-top: 1rem !important;
+}
+
+.fi-simple-header-subheading {
+    color: #94a3b8 !important;
+    font-size: 0.875rem !important;
+    margin-top: 0.5rem !important;
+}
+
+/* Form input custom dark theme overrides */
+.fi-simple-page input[type="email"],
+.fi-simple-page input[type="password"] {
+    background-color: rgba(10, 15, 30, 0.75) !important;
+    border: 1px solid rgba(255, 255, 255, 0.08) !important;
+    border-radius: 12px !important;
+    color: #ffffff !important;
+    padding: 0.75rem 1rem !important;
+    font-size: 0.95rem !important;
+    box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+    transition: all 0.25s ease !important;
+}
+
+.fi-simple-page input[type="email"]:focus,
+.fi-simple-page input[type="password"]:focus {
+    border-color: #1A56DB !important;
+    background-color: rgba(10, 15, 30, 0.9) !important;
+    box-shadow: 0 0 0 3px rgba(26, 86, 219, 0.25), 
+                inset 0 1px 0 rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Labels */
+.fi-simple-page label {
+    color: #cbd5e1 !important;
+    font-weight: 500 !important;
+    font-size: 0.85rem !important;
+}
+
+/* Submit Action Button styling */
+.fi-simple-page button[type="submit"] {
+    background-color: #1A56DB !important;
+    color: #ffffff !important;
+    border-radius: 12px !important;
+    padding-top: 0.8rem !important;
+    padding-bottom: 0.8rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.025em !important;
+    box-shadow: 0 4px 12px rgba(26, 86, 219, 0.2) !important;
+    transition: all 0.25s ease !important;
+}
+
+.fi-simple-page button[type="submit"]:hover {
+    background-color: #2563EB !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 8px 20px rgba(26, 86, 219, 0.35) !important;
+}
+
+.fi-simple-page button[type="submit"]:active {
+    transform: translateY(1px) !important;
+}
+
+/* "Remember me" checkbox styling */
+.fi-simple-page input[type="checkbox"] {
+    border-color: rgba(255, 255, 255, 0.15) !important;
+    background-color: rgba(10, 15, 30, 0.75) !important;
+    border-radius: 4px !important;
+}
+
+.fi-simple-page input[type="checkbox"]:checked {
+    background-color: #1A56DB !important;
+}
