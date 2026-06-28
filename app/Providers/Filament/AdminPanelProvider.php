@@ -409,6 +409,11 @@ class AdminPanelProvider extends PanelProvider
             ])
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\Filament\Widgets')
             ->widgets([
+                \App\Filament\Widgets\StatsOverview::class,
+                \App\Filament\Widgets\DashboardChart::class,
+                \App\Filament\Widgets\PopularPostsChart::class,
+                \App\Filament\Widgets\ProductCategoryChart::class,
+                \App\Filament\Widgets\LatestMessages::class,
                 \App\Filament\Widgets\LatestProducts::class,
                 \App\Filament\Widgets\LatestProjects::class,
             ])

@@ -3,27 +3,42 @@
 namespace App\Filament\Widgets;
 
 use Filament\Widgets\ChartWidget;
+use App\Models\ContactMessage;
+use Illuminate\Support\Carbon;
 
 class DashboardChart extends ChartWidget
 {
     protected static ?int $sort = 2;
     protected int | string | array $columnSpan = 'full';
     protected ?string $maxHeight = '300px';
-    protected ?string $heading = 'Kunjungan Website Bulanan';
+    protected ?string $heading = '📩 Pesan Masuk per Bulan (Real Data)';
 
     protected function getData(): array
     {
+        // Ambil data pesan masuk 12 bulan terakhir dari database
+        $data = [];
+        $labels = [];
+
+        for ($i = 11; $i >= 0; $i--) {
+            $month = Carbon::now()->subMonths($i);
+            $labels[] = $month->translatedFormat('M Y');
+            $data[] = ContactMessage::whereYear('created_at', $month->year)
+                ->whereMonth('created_at', $month->month)
+                ->count();
+        }
+
         return [
             'datasets' => [
                 [
-                    'label' => 'Kunjungan',
-                    'data' => [120, 150, 110, 240, 310, 420, 380, 500, 620, 580, 700, 850],
-                    'borderColor' => '#3b82f6',
-                    'backgroundColor' => 'rgba(59, 130, 246, 0.2)',
-                    'fill' => 'start',
+                    'label'           => 'Pesan Masuk',
+                    'data'            => $data,
+                    'borderColor'     => '#1A56DB',
+                    'backgroundColor' => 'rgba(26, 86, 219, 0.15)',
+                    'fill'            => 'start',
+                    'tension'         => 0.4,
                 ],
             ],
-            'labels' => ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Ags', 'Sep', 'Okt', 'Nov', 'Des'],
+            'labels' => $labels,
         ];
     }
 
