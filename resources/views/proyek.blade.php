@@ -19,7 +19,7 @@
       <div class="container mx-auto px-4 md:px-8">
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
           @forelse($projects as $project)
-          <div class="product-item group border border-slate-200 rounded-2xl p-4 bg-white hover:shadow-xl transition-all duration-300">
+          <a href="{{ route('project.detail', $project->slug) }}" class="product-item group border border-slate-200 rounded-2xl p-4 bg-white hover:shadow-xl transition-all duration-300 block hover:-translate-y-1">
             <div class="h-56 rounded-xl overflow-hidden mb-4 relative bg-slate-100 flex items-center justify-center">
               @if($project->image)
                 <img src="{{ Storage::url($project->image) }}" alt="{{ $project->title }}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500" />
@@ -31,10 +31,19 @@
                 {{ $project->category }}
               </div>
               @endif
+              <!-- View detail overlay -->
+              <div class="absolute inset-0 bg-brand-blue/0 group-hover:bg-brand-blue/10 transition-all duration-300 flex items-center justify-center">
+                <span class="bg-white text-brand-blue font-bold text-sm px-4 py-2 rounded-full opacity-0 group-hover:opacity-100 transition-all duration-300 shadow-lg flex items-center gap-2">
+                  <i class="ph-bold ph-eye"></i> Lihat Detail
+                </span>
+              </div>
             </div>
-            <h3 class="text-xl font-bold text-slate-900 mb-2">{{ $project->title }}</h3>
+            <h3 class="text-xl font-bold text-slate-900 mb-2 group-hover:text-brand-blue transition-colors">{{ $project->title }}</h3>
             <p class="text-slate-500 text-sm line-clamp-2 mb-2">{{ Str::limit($project->description, 60) }}</p>
-          </div>
+            <span class="text-brand-blue text-sm font-semibold flex items-center gap-1 mt-2">
+              Lihat Selengkapnya <i class="ph-bold ph-arrow-right text-xs"></i>
+            </span>
+          </a>
           @empty
           <div class="col-span-full text-center py-20">
             <i class="ph ph-briefcase text-6xl text-slate-300 mb-4 block"></i>

@@ -40,6 +40,27 @@ class FrontendController extends Controller
         return view('proyek', compact('projects'));
     }
 
+    public function projectDetail($slug)
+    {
+        $project = Project::where('slug', $slug)->firstOrFail();
+
+        $relatedProjects = Project::where('id', '!=', $project->id)
+            ->where('category', $project->category)
+            ->latest()
+            ->take(3)
+            ->get();
+
+        // If no related in same category, get latest others
+        if ($relatedProjects->isEmpty()) {
+            $relatedProjects = Project::where('id', '!=', $project->id)
+                ->latest()
+                ->take(3)
+                ->get();
+        }
+
+        return view('detail-proyek', compact('project', 'relatedProjects'));
+    }
+
     public function about()
     {
         return view('tentang');
