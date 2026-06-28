@@ -36,8 +36,13 @@ return [
     ],
 
     'turnstile' => [
-        'key' => env('TURNSTILE_KEY', '1x00000000000000000000AA'),
+        'key'    => env('TURNSTILE_KEY', '1x00000000000000000000AA'),
         'secret' => env('TURNSTILE_SECRET', '1x000000000000000000000000000000000'),
     ],
 
+    'monitor' => [
+        'secret' => env('MONITOR_SECRET', ''),
+    ],
+
 ];
+
